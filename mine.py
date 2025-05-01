@@ -77,7 +77,11 @@ class MusicPlayer:
             "music/(5).mp3",
             "music/(6).mp3",
             "music/(7).mp3",
-            "music/(8).mp3"
+            "music/(8).mp3",
+            "music/(9).mp3",
+            "music/(10).mp3",
+            "music/(11).mp3",
+            "music/(12).mp3"
         ]
         self.is_playing = False
         self.current_song = None
@@ -255,6 +259,61 @@ def open_invitation_lara(name):
     image_label.bind("<Enter>", on_enter)
 
 
+def open_invitation_sergey(name):
+    new_tab_sergey = ttk.Frame(notebook)
+    new_tab_sergey.pack(fill="both", expand=True)
+    notebook.add(new_tab_sergey, text=f"Запрошення для {name}")
+    notebook.select(new_tab_sergey) # Переключитись на нову вкладку
+
+    image = Image.open("png/sergey_begraynd.png")
+    background_image2 = ImageTk.PhotoImage(image)
+    background_label2 = tk.Label(new_tab_sergey, image = background_image2)
+    background_label2.place(x=-2, y=-2)
+    background_label2.image = background_image2  # Збережіть посилання!
+
+    style_global = ttk.Style()
+    style_global.configure("style_global.TLabel", font=("Arial", 21, "bold"), borderwidth=0, relief="flat")
+
+    style_2 = ttk.Style()
+    style_2.configure("style_2.TLabel", font=("Arial", 23, "bold"), borderwidth=0, relief="flat")
+
+    lable_global_text = ttk.Label(new_tab_sergey, text=f"Дякую що відкрими моє запрошення Сергію!", style="style_global.TLabel")
+    lable_global_text.place(x=123, y=78.46)
+
+    lable_invait = ttk.Label(new_tab_sergey, text="Запрошую вас на свій день народження,", style="style_2.TLabel")
+    lable_invait.place(x=130, y= 515)
+    lable_invait = ttk.Label(new_tab_sergey, text="Яке буде 6 травня о 17:00 по в.Соборна", style="style_2.TLabel")
+    lable_invait.place(x=130, y= 565)
+    lable_invait = ttk.Label(new_tab_sergey, text="Якщо ви прийдете то звяжіться з нами", style="style_2.TLabel")
+    lable_invait.place(x=130, y= 615)
+    lable_invait = ttk.Label(new_tab_sergey, text="По контактах на головній сторінці", style="style_2.TLabel")
+    lable_invait.place(x=130, y= 665)
+    lable_invait = ttk.Label(new_tab_sergey, text="!!!Дякую за увагу!!!", style="style_2.TLabel")
+    lable_invait.place(x=130, y= 715)
+
+    style_3 = ttk.Style()
+    style_3.configure("style_3.TLabel", font=("Arial", 11), borderwidth=0, relief="flat")
+
+    lable_close = ttk.Label(new_tab_sergey, text="Для того щоб закрити відкриту вкладку натисніть на неї правою кнопкою миші!", style="style_3.TLabel")
+    lable_close.place(x=173, y=798.72)
+
+    image_list1 = ["png/sergey (1).png", "png/sergey (2).png", "png/sergey (3).png", "png/sergey (4).png"]
+    images = [ImageTk.PhotoImage(Image.open(path)) for path in image_list1]
+    current_image = images[0]  # Start with the first image
+
+    image_label = tk.Label(new_tab_sergey, image=current_image)
+    image_label.image = current_image
+    image_label.place(x=186.86, y=137.79)
+
+    def on_enter(event):
+        nonlocal current_image
+        current_image = random.choice(images)
+        image_label.config(image=current_image)
+        image_label.image = current_image  # Update the reference
+
+    image_label.bind("<Enter>", on_enter)
+
+
 def open_invitation_others(name):
     new_tab_others = ttk.Frame(notebook)
     new_tab_others.pack(fill="both", expand=True)
@@ -356,6 +415,16 @@ def lara():
     progress_bar.destroy()
     open_invitation_lara("Лари")
 
+def sergey():
+    progress_bar = ttk.Progressbar(main_frame, orient="horizontal", length=250, maximum=150, mode="determinate")
+    progress_bar.place(x=328.79, y=427.41)
+    for i in range(151):
+        time.sleep(0.03)  # Імітація завантаження
+        progress_bar["value"] = i
+        app.update_idletasks()
+    progress_bar.destroy()
+    open_invitation_sergey("Сергію")
+
 def others():
     progress_bar = ttk.Progressbar(main_frame, orient="horizontal", length=300, maximum=200 , mode="determinate")  # Збільшено length в 4 рази
     progress_bar.place(x=288.79, y=427.41)
@@ -425,11 +494,15 @@ def selected(event):
     style2.configure("BoldLarge1.TButton", font=("Arial", 12, "bold"), borderwidth=2, relief="flat", background="#A9203E")
     style2.configure("BoldLarge2.TButton", font=("Arial", 12, "bold"), borderwidth=2, relief="flat",background="#54FF9F")
     style2.configure("BoldLarge3.TButton", font=("Arial", 12, "bold"), borderwidth=2, relief="flat",background="#9932CC")
+    style2.configure("BoldLarge4.TButton", font=("Arial", 12, "bold"), borderwidth=2, relief="flat", background="#FF7518")
 
     selection2 = combobox.get()
     if selection2 == "Лари":
         bat = ttk.Button(main_frame, text="Відкрити запрошення", style="BoldLarge1.TButton", command=lara)
         bat.place(x=23, y=94)
+    elif selection2 == "Сергія":
+        bat2 = ttk.Button(main_frame, text="Відкрити запрошення", style="BoldLarge4.TButton", command=sergey)
+        bat2.place(x=23, y=94)
     elif selection2 == "Інших":
         bat2 = ttk.Button(main_frame, text="Відкрити запрошення", style="BoldLarge2.TButton", command=others)
         bat2.place(x=23, y=94)
@@ -440,7 +513,7 @@ def selected(event):
         print("обновленно")
 
 
-languages = ["Лари", "Алли", "Інших"]
+languages = ["Лари", "Сергія", "Алли", "Інших"]
 # Створюємо стиль для label
 style = ttk.Style()
 style.configure("BoldLarge.TLabel", font=("Arial", 16, "bold"), borderwidth=0, relief="flat")
