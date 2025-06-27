@@ -1,3 +1,5 @@
+[![Latest release](https://img.shields.io/badge/Release-click-labelColor=0000&logoColor=0eff0e)](https://github.com/matematik1/Birthday-invitation/releases/latest)
+
 #Ukrainian language
 # Birthday Invitation App
 
