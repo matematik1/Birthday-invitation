@@ -64,6 +64,6 @@ This Python application, built with the Tkinter library, is an interactive birth
 
 ## Contact
 
-* Telegram: [https://t.me/yurch1ks](https://t.me/yurch1ks)
+* Telegram: [[https://t.me/yurch1ks=](https://t.me/yuriidyshkant))
 * Instagram: [https://www.instagram.com/matemch1k?igsh=dDN5NjM5MmFybHU=](https://www.instagram.com/matemch1k?igsh=dDN5NjM5MmFybHU=)
 * Email: shmitayura@gmail.com
